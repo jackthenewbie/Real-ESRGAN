@@ -40,8 +40,8 @@ def main():
     parser.add_argument('-a', '--audio', action='store_true', help='Keep audio')
     parser.add_argument('--fps', type=float, default=None, help='FPS of the output video')
     parser.add_argument('--consumer', type=int, default=4, help='Number of IO consumers')
-    parser.add_argument('--p_tmpfr', type=str, default="", help='Path of tmp_frames')
-
+    parser.add_argument('--p_tmpfr', type=str, default="", nargs='+', help='Path of tmp_frames')
+    opts = parser.parse_args() #https://stackoverflow.com/a/26990349
     parser.add_argument(
         '--alpha_upsampler',
         type=str,
@@ -108,7 +108,7 @@ def main():
 
     if mimetypes.guess_type(args.input)[0].startswith('video'):  # is a video file
         video_name = os.path.splitext(os.path.basename(args.input))[0]
-        path_temp_frames = os.path.join(args.p_tmpfr, 'tmp_frames')
+        path_temp_frames = os.path.join(' '.join(opts.p_tmpfr), 'tmp_frames')
         frame_folder = os.path.join(path_temp_frames, video_name)
         os.makedirs(frame_folder, exist_ok=True)
         # use ffmpeg to extract frames
