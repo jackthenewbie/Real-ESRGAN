@@ -111,9 +111,9 @@ def main():
         #path_temp_frames = os.path.join(' '.join(opts.p_tmpfr), 'tmp_frames')
         #ex: /content/gdrive/Shareddrives/ALWAYS HAVE Cartoons 123/RandomTDownloadXongXoa/tmp
         frame_folder = os.path.join(f'{args.p_tmpfr}/tmp_frames', video_name)
-        os.makedirs(frame_folder, exist_ok=True)
+        #os.makedirs(frame_folder, exist_ok=True) #Move to google colab
         # use ffmpeg to extract frames
-        os.system(f'ffmpeg -i {args.input} -qscale:v 1 -qmin 1 -qmax 1 -vsync 0  {frame_folder}/frame%08d.png')
+        #os.system(f'ffmpeg -i {args.input} -qscale:v 1 -qmin 1 -qmax 1 -vsync 0  {frame_folder}/frame%08d.png')#Move to google colab
         # get image path list
         paths = sorted(glob.glob(os.path.join(frame_folder, '*')))
         if args.video:
