@@ -180,7 +180,7 @@ def main():
     for consumer in consumers:
         consumer.join()
     pbar.close()
-
+    return
     # merge frames to video
     if args.video:
         video_save_path = os.path.join(args.output, f'{video_name}_{args.suffix}.mp4')
